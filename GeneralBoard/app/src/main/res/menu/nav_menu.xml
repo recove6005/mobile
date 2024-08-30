@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android">
+    <item
+        android:id="@+id/nav_board"
+        android:icon="@drawable/nav_board_free"
+        android:title="Board" />
+    <item
+        android:id="@+id/nav_profile"
+        android:icon="@drawable/nav_profile_free"
+        android:title="Profile" />
+    <item
+        android:id="@+id/nav_letter"
+        android:icon="@drawable/nav_letter_free"
+        android:title="Letter" />
+    <item
+        android:id="@+id/nav_notification"
+        android:icon="@drawable/nav_bell_free"
+        android:title="Notification" />
+    <item
+        android:id="@+id/nav_settings"
+        android:icon="@drawable/nav_gear_free"
+        android:title="Settings" />
+</menu>
