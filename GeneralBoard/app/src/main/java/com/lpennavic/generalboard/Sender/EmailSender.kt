@@ -17,7 +17,7 @@ class EmailSender {
         private const val SMTP_HOST = "smtp.gmail.com"
         private const val SMTP_PORT = "587"
         private const val USERNAME ="leehan6005@gmail.com"
-        private const val APP_PASSWORD ="sizolqbpbshcvncp"
+        private const val APP_PASSWORD ="atcmuvfjpephzgjw"
     }
 
     fun sendEmail(recipientEmailAddress: String, subject: String, content: String) {
@@ -48,7 +48,7 @@ class EmailSender {
             message.setText(content)
 
             Transport.send(message)
-            Log.v("emailsender", "message is transported.")
+            Log.v("emailsender", "email sended.")
         } catch (e: AddressException) {
             e.printStackTrace()
         } catch (e: MessagingException) {

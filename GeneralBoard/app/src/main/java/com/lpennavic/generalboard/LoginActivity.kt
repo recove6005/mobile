@@ -102,17 +102,6 @@ class LoginActivity : AppCompatActivity() {
             val intent = Intent(this, RegisterActivity::class.java)
             startActivity(intent)
         }
-
-        val showDbBtn = findViewById<Button>(R.id.showDbBtn)
-        showDbBtn.setOnClickListener {
-            Log.v("userlist", "button clicked.")
-            val  arrayList = UserDAO.selectAllUser(this).listIterator()
-            arrayList.forEach { user:UserDTO ->
-                Log.v("userlist", "$user :: "+user.id+", "+user.pw)
-            }
-        }
-
-
     }
 
     fun defaultTestUser() {

@@ -1,17 +1,28 @@
 package com.lpennavic.generalboard
 
-import android.content.Intent
 import android.os.Bundle
+import android.view.View
 import android.widget.Button
 import android.widget.EditText
 import android.widget.Toast
 import androidx.activity.enableEdgeToEdge
+import androidx.appcompat.app.AlertDialog
 import androidx.appcompat.app.AppCompatActivity
 import androidx.core.view.ViewCompat
 import androidx.core.view.WindowInsetsCompat
 import com.lpennavic.generalboard.DAO.UserDAO
+import com.lpennavic.generalboard.Sender.EmailSender
+import kotlinx.coroutines.CoroutineScope
+import kotlinx.coroutines.Dispatchers
+import kotlinx.coroutines.Job
+import kotlinx.coroutines.launch
+import kotlinx.coroutines.withContext
+import kotlin.random.Random
 
 class PasswordChangeBox : AppCompatActivity() {
+    val backgroundScope = CoroutineScope(Dispatchers.Default+ Job())
+
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         enableEdgeToEdge()
@@ -34,26 +45,76 @@ class PasswordChangeBox : AppCompatActivity() {
         val cancelBtn = findViewById<Button>(R.id.cancel_btn)
         val okBtn = findViewById<Button>(R.id.ok_btn)
 
+
         cancelBtn.setOnClickListener {
             finish()
         }
 
+        val emailProveBtn = findViewById<Button>(R.id.email_prove_btn)
+        val emailEdit = findViewById<EditText>(R.id.email_edit)
+        val emailProveEdit = findViewById<EditText>(R.id.email_prove_edit)
+        var proveCode = ""
+
+        // 이메일 인증
+        emailProveBtn.setOnClickListener {
+            proveCode = Random.nextInt(100000, 1000000).toString()
+            val emailSender = EmailSender()
+            val recipientEmailAddress = emailEdit.text.toString()
+            val subject = "General Board : Email Verification"
+            val content = "Here is your verification code: $proveCode"
+
+            emailProveEdit.visibility = View.VISIBLE
+
+            backgroundScope.launch {
+            // 코루틴 네트워크 스레드
+                emailSender.sendEmail(recipientEmailAddress, subject, content)
+                withContext(Dispatchers.Main) { }
+            }
+
+        }
+
         okBtn.setOnClickListener {
+            // 비밀번호 확인
             val userCurPw = user!!.pw
             if(userCurPw.contentEquals(currentPw) == false) {
                 Toast.makeText(this, "현재 비밀번호를 확인해 주세요.", Toast.LENGTH_SHORT).show()
                 return@setOnClickListener // 리스너 함수를 종료
             }
 
-            if(newPw.contentEquals(newPwCheck)== false) {
+            // 새 비밀번호 확인
+            if(newPw.isEmpty() || newPw.contentEquals(newPwCheck) == false) {
                 Toast.makeText(this, "새 비밀번호가 일치하지 않습니다.", Toast.LENGTH_SHORT).show()
                 return@setOnClickListener
             }
 
-            UserDAO.updateUser(this, 2, newPw, user)
+            // 이메일 확인
+            val email = emailEdit.text.toString()
+            val userEmail = user.email
+            if(email.isEmpty() && email.contentEquals(userEmail)) {
+                Toast.makeText(this, "이메일을 확인해 주세요.", Toast.LENGTH_SHORT).show()
+                return@setOnClickListener
+            }
 
-            Toast.makeText(this, "비밀번호가 변경되었습니다.", Toast.LENGTH_SHORT).show()
-            finish()
+            // 이메일 인증번호 확인
+            val userInputCode = emailProveEdit.text.toString()
+            if(userInputCode.isEmpty() || userInputCode.contentEquals(proveCode) == false) {
+                Toast.makeText(this, "이메일 인증번호를 확인해 주세요.", Toast.LENGTH_SHORT).show()
+                return@setOnClickListener
+            }
+
+            val dialogBuilder = AlertDialog.Builder(this)
+                .setMessage("비밀번호를 변경하시겠습니까?")
+                .setPositiveButton("예") { dialog, which ->
+                    UserDAO.updateUser(this, 2, newPw, user)
+                    Toast.makeText(this, "비밀번호가 변경되었습니다.", Toast.LENGTH_SHORT).show()
+                    finish()
+                }
+                .setNegativeButton("아니오") { dialog, which ->
+                    dialog.dismiss()
+                }
+
+            dialogBuilder.show()
+
         }
     }
 }

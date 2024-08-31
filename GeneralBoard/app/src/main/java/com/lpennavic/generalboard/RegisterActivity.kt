@@ -130,14 +130,13 @@ class RegisterActivity : AppCompatActivity() {
             provCode = Random.nextInt(100000, 1000000).toString()
             codeSendBtn.setBackgroundColor(Color.RED)
 
-            val subject = "Email Verification"
+            val subject = "General Board : Email Verification"
             val content = "Here is your verification code: $provCode"
 
             // 네트워크 작업
             // 코틀린에서 AsynkTask는 권장되지 않고 대신 Coroutines 사용
             backgroundScope.launch {
                 emailSender.sendEmail(recipientEmailAddress, subject, content)
-                Log.v("emailsender", "email was sended.")
                 withContext(Dispatchers.Main) {
                     // coroutines에서 Main 디스패처에 의뢰할 작업들
                 }

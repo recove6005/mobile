@@ -60,7 +60,7 @@ class MainActivity : AppCompatActivity() {
                     menubar.menu.findItem(R.id.nav_notification).setIcon(R.drawable.nav_bell_clicked)
                 }
                 R.id.nav_settings -> {
-                    loadFragment(SettingsFragment())
+                    loadFragment(SettingsFragment(userId.toString()))
                     menubar.selectedItemId = R.id.nav_settings
                     menubar.menu.findItem(R.id.nav_settings).setIcon(R.drawable.nav_gear_clicked)
                 }
@@ -88,7 +88,7 @@ class MainActivity : AppCompatActivity() {
                         menubar.menu.findItem(R.id.nav_notification).setIcon(R.drawable.nav_bell_clicked)
                     }
                     R.id.nav_settings -> {
-                        loadFragment(SettingsFragment())
+                        loadFragment(SettingsFragment(userId.toString()))
                         menubar.menu.findItem(R.id.nav_settings).setIcon(R.drawable.nav_gear_clicked)
                     }
             }

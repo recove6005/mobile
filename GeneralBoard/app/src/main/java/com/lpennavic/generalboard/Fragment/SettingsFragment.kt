@@ -9,9 +9,10 @@ import android.widget.ArrayAdapter
 import android.widget.ListView
 import androidx.fragment.app.Fragment
 import com.lpennavic.generalboard.LoginActivity
+import com.lpennavic.generalboard.PasswordChangeBox
 import com.lpennavic.generalboard.R
 
-class SettingsFragment: Fragment(R.layout.fragment_settings) {
+class SettingsFragment(val userId: String): Fragment(R.layout.fragment_settings) {
 
     lateinit var settingList: ListView
 
@@ -31,11 +32,14 @@ class SettingsFragment: Fragment(R.layout.fragment_settings) {
                 0 -> {
                     // 비밀번호 변경
                     // 이메일 인증 필요
-
+                    val intent = Intent(view.context, PasswordChangeBox::class.java)
+                    intent.putExtra("user", userId)
+                    startActivity(intent)
                 }
                 1 -> {
                     // 아이디 변경
-                    // 이메일 인증 필요
+                    // 비밀번호 확인 필요
+
 
                 }
                 2 -> {

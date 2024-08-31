@@ -41,7 +41,7 @@
             android:layout_width="match_parent"
             android:layout_height="50dp"
             android:layout_marginTop="25dp"
-            android:inputType="numberPassword"
+            android:inputType="textPassword"
             android:hint="PW"/>
 
         <Button
@@ -60,12 +60,6 @@
             android:text="Register"
             android:textStyle="bold"
             android:textSize="20dp"/>
-
-        <Button
-            android:id="@+id/showDbBtn"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="show all"/>
     </LinearLayout>
 
 </LinearLayout>
