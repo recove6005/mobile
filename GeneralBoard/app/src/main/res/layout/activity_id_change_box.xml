@@ -11,6 +11,23 @@
     tools:context=".PasswordChangeBox"
     android:background="#EAEAEA">
 
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:textSize="18dp"
+        android:layout_margin="10dp"
+        android:text="변경할 아이디를 입력하세요."/>
+
+    <EditText
+        android:id="@+id/new_id_edit"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:textSize="18dp"
+        android:background="@null"
+        android:layout_margin="10dp"
+        android:padding="10dp"
+        android:hint="\@ID"/>
+
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
@@ -22,7 +39,7 @@
             android:layout_height="wrap_content"
             android:layout_weight="2"
             android:textSize="18dp"
-            android:text="현재 비밀번호 "/>
+            android:text="비밀번호 "/>
         <EditText
             android:id="@+id/current_pw_edit"
             android:layout_width="0dp"
@@ -46,68 +63,18 @@
             android:layout_height="wrap_content"
             android:layout_weight="2"
             android:textSize="18dp"
-            android:text="새 비밀번호"/>
+            android:text="비밀번호 확인"/>
         <EditText
-            android:id="@+id/new_pw_edit"
+            android:id="@+id/check_pw_edit"
             android:layout_width="0dp"
             android:layout_weight="3"
             android:layout_height="wrap_content"
-            android:inputType="textPassword"
             android:paddingLeft="10dp"
             android:background="@null"
             android:textSize="20dp"
-            android:hint="***"/>
-    </LinearLayout>
-
-    <LinearLayout
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:orientation="horizontal"
-        android:layout_margin="10dp"
-        android:gravity="center">
-        <TextView
-            android:layout_width="0dp"
-            android:layout_height="wrap_content"
-            android:layout_weight="2"
-            android:textSize="18dp"
-            android:text="새 비밀번호 확인"/>
-        <EditText
-            android:id="@+id/new_pwcheck_edit"
-            android:layout_width="0dp"
-            android:layout_weight="3"
-            android:layout_height="wrap_content"
             android:inputType="textPassword"
-            android:paddingLeft="10dp"
-            android:background="@null"
-            android:textSize="20dp"
             android:hint="***"/>
     </LinearLayout>
-
-    <LinearLayout
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:orientation="horizontal"
-        android:layout_margin="10dp"
-        android:gravity="center">
-
-        <Button
-            android:id="@+id/email_prove_btn"
-            android:layout_width="0dp"
-            android:layout_weight="1"
-            android:layout_height="wrap_content"
-            android:text="이메일 인증"
-            android:backgroundTint="#5D5D5D"
-            android:padding="0dp"/>
-    </LinearLayout>
-
-    <EditText
-        android:id="@+id/email_prove_edit"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:hint="이메일 인증번호"
-        android:inputType="numberPassword"
-        android:layout_margin="10dp"
-        android:visibility="gone"/>
 
     <LinearLayout
         android:layout_width="match_parent"
@@ -132,4 +99,5 @@
             android:backgroundTint="#5D5D5D"
             android:text="확인"/>
     </LinearLayout>
+
 </LinearLayout>

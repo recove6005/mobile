@@ -8,6 +8,7 @@ import android.view.View
 import android.widget.ArrayAdapter
 import android.widget.ListView
 import androidx.fragment.app.Fragment
+import com.lpennavic.generalboard.EmailChangeBox
 import com.lpennavic.generalboard.LoginActivity
 import com.lpennavic.generalboard.PasswordChangeBox
 import com.lpennavic.generalboard.R
@@ -37,10 +38,12 @@ class SettingsFragment(val userId: String): Fragment(R.layout.fragment_settings)
                     startActivity(intent)
                 }
                 1 -> {
-                    // 아이디 변경
+                    // 이메일 변경
+                    // 이메일 인증 필요
                     // 비밀번호 확인 필요
-
-
+                    val intent = Intent(view.context, EmailChangeBox::class.java)
+                    intent.putExtra("user", userId)
+                    startActivity(intent)
                 }
                 2 -> {
                     // 로그아웃

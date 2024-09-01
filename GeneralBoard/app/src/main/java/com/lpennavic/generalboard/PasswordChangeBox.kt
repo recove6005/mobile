@@ -22,7 +22,6 @@ import kotlin.random.Random
 class PasswordChangeBox : AppCompatActivity() {
     val backgroundScope = CoroutineScope(Dispatchers.Default+ Job())
 
-
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         enableEdgeToEdge()
@@ -51,7 +50,6 @@ class PasswordChangeBox : AppCompatActivity() {
         }
 
         val emailProveBtn = findViewById<Button>(R.id.email_prove_btn)
-        val emailEdit = findViewById<EditText>(R.id.email_edit)
         val emailProveEdit = findViewById<EditText>(R.id.email_prove_edit)
         var proveCode = ""
 
@@ -59,7 +57,7 @@ class PasswordChangeBox : AppCompatActivity() {
         emailProveBtn.setOnClickListener {
             proveCode = Random.nextInt(100000, 1000000).toString()
             val emailSender = EmailSender()
-            val recipientEmailAddress = emailEdit.text.toString()
+            val recipientEmailAddress = user!!.email
             val subject = "General Board : Email Verification"
             val content = "Here is your verification code: $proveCode"
 
@@ -84,14 +82,6 @@ class PasswordChangeBox : AppCompatActivity() {
             // 새 비밀번호 확인
             if(newPw.isEmpty() || newPw.contentEquals(newPwCheck) == false) {
                 Toast.makeText(this, "새 비밀번호가 일치하지 않습니다.", Toast.LENGTH_SHORT).show()
-                return@setOnClickListener
-            }
-
-            // 이메일 확인
-            val email = emailEdit.text.toString()
-            val userEmail = user.email
-            if(email.isEmpty() && email.contentEquals(userEmail)) {
-                Toast.makeText(this, "이메일을 확인해 주세요.", Toast.LENGTH_SHORT).show()
                 return@setOnClickListener
             }
 

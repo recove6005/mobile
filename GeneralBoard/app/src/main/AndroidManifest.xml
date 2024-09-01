@@ -17,6 +17,12 @@
         android:theme="@style/Theme.GeneralBoard"
         tools:targetApi="31">
         <activity
+            android:name=".EmailChangeBox"
+            android:exported="false" />
+        <activity
+            android:name=".IdChangeBox"
+            android:exported="false" />
+        <activity
             android:name=".NicknameChangeBox"
             android:exported="false" />
         <activity
