@@ -33,11 +33,11 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content">
                 <EditText
-                    android:id="@+id/edit_id"
+                    android:id="@+id/phone_edit"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:textSize="18dp"
-                    android:hint="Email"
+                    android:hint="Phone Number"
                     android:padding="10dp"/>
             </com.google.android.material.textfield.TextInputLayout>
 
@@ -45,12 +45,13 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content">
                 <EditText
-                    android:id="@+id/edit_pw"
+                    android:id="@+id/email_edit"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:textSize="18dp"
-                    android:hint="Password"
-                    android:padding="10dp"/>
+                    android:hint="Email"
+                    android:padding="10dp"
+                    android:visibility="gone"/>
             </com.google.android.material.textfield.TextInputLayout>
         </LinearLayout>
 
@@ -65,48 +66,41 @@
             android:orientation="vertical">
 
             <androidx.appcompat.widget.AppCompatButton
-                android:id="@+id/email_login_btn"
-                android:layout_width="match_parent"
-                android:layout_height="50dp"
-                android:text="SIGNUP OR SIGNIN BY EMAIL"/>
-
-            <androidx.appcompat.widget.AppCompatButton
-                android:id="@+id/google_login_btn"
-                android:layout_width="match_parent"
-                android:layout_height="50dp"
-                android:layout_marginTop="30dp"
-                android:background="@drawable/google_login_btn"
-                android:text="GOOGLE LOGIN"/>
-
-            <androidx.appcompat.widget.AppCompatButton
-                android:id="@+id/facebook_login_btn"
-                android:layout_width="match_parent"
-                android:layout_height="50dp"
-                android:background="@drawable/facebook_login_btn"
-                android:text="FACEBOOK LOGIN"/>
-
-            <TextView
                 android:id="@+id/find_id_btn"
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:text="FIND ID"
-                android:layout_marginTop="30dp"
-                android:textSize="15dp"
-                android:gravity="center"
-                android:textColor="#B2CCFF"
-                android:textStyle="italic"/>
+                android:layout_height="50dp"
+                android:text="FIND ID"/>
+
+            <androidx.appcompat.widget.AppCompatButton
+                android:id="@+id/close_btn"
+                android:layout_width="match_parent"
+                android:layout_height="50dp"
+                android:text="CLOSE"/>
 
             <TextView
-                android:id="@+id/find_pw_btn"
+                android:id="@+id/find_by_email_text"
+                android:layout_marginTop="30dp"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:text="FIND PASSWORD"
-                android:layout_marginTop="10dp"
-                android:textSize="15dp"
                 android:gravity="center"
                 android:textColor="#B2CCFF"
-                android:textStyle="italic"/>
+                android:textStyle="italic"
+                android:text="FIND BY EMAIL"/>
+
+            <TextView
+                android:id="@+id/find_by_phone_text"
+                android:layout_marginTop="30dp"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:gravity="center"
+                android:textColor="#B2CCFF"
+                android:textStyle="italic"
+                android:text="FIND BY PHONE NUMBER"
+                android:visibility="gone"/>
+
         </LinearLayout>
+
+
 
     </RelativeLayout>
 </layout>
