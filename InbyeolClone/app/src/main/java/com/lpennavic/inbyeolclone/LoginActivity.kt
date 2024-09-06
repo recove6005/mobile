@@ -51,6 +51,10 @@ class LoginActivity : AppCompatActivity() {
         binding = DataBindingUtil.setContentView(this, R.layout.activity_login)
         auth = FirebaseAuth.getInstance()
 
+        // 자동로그인
+        moveToMain(auth.currentUser)
+        // auth.signOut() >> 세션을 날리는 코드, 로그아웃 됨
+
         // 이메일 로그인
         binding.emailLoginBtn.setOnClickListener {
             signupAndSignin()

@@ -73,6 +73,7 @@ dependencies {
     // Declare the dependency for the Cloud Firestore library
     // When using the BoM, you don't specify versions in Firebase library dependencies
     implementation("com.google.firebase:firebase-firestore")
+    implementation("com.google.firebase:firebase-storage")
 
     // google login
     // Also add the dependency for the Google Play services library and specify its version
@@ -84,4 +85,7 @@ dependencies {
     // Add the dependency for the Firebase Authentication library
     // When using the BoM, you don't specify versions in Firebase library dependencies
     implementation("com.google.firebase:firebase-auth-ktx")
+
+    // glide
+    implementation("com.github.bumptech.glide:glide:4.16.0")
 }
