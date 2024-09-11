@@ -67,16 +67,18 @@ class PickActivity : AppCompatActivity() {
         // 이미지 경로를 지정 시 직접적으로 노출되기 때문에 보안 상 좋지 않음 >> uri 링크를 통해 다운로드
         storagePath.putFile(photoUri).addOnCompleteListener { uploadTask ->
             if(uploadTask.isSuccessful) {
-                storagePath.downloadUrl.addOnSuccessListener { uri ->
-                    val downloadUrl = uri.toString()
+                storagePath.downloadUrl.addOnCompleteListener { uri ->
+                    val downloadUrl = uri.result.toString()
 
                     // Firestore에 데이터 저장
                     var posterModel = PosterModel().apply {
-                        description = description.toString()
+                        this.description = description
                         imageUrl = downloadUrl
-                        uid = auth.uid
-                        userId = auth.currentUser?.email
-                        timestamp = System.currentTimeMillis().toString()
+                        uid = auth.uid.toString()
+                        userId = auth.currentUser?.email.toString()
+                        this.timestamp = System.currentTimeMillis().toString()
+                        favCnt = 0
+                        favs = mutableMapOf()
                     }
                     fireStore.collection("images").add(posterModel)
                 }
@@ -84,7 +86,6 @@ class PickActivity : AppCompatActivity() {
             Toast.makeText(this, "업로드 성공", Toast.LENGTH_SHORT).show()
             finish()
         }
-
 
 
     }
