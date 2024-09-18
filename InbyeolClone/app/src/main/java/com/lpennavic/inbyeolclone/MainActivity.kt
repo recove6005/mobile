@@ -36,8 +36,10 @@ BottomNavigationView.OnNavigationItemSelectedListener {
         binding = DataBindingUtil.setContentView(this, R.layout.activity_main)
         binding.bottomNav.setOnNavigationItemSelectedListener(this)
 
+
         // 권한 요청
         ActivityCompat.requestPermissions(this, arrayOf(Manifest.permission.READ_MEDIA_IMAGES), 0)
+
     }
 
     override fun onNavigationItemSelected(item: MenuItem): Boolean {
