@@ -1,0 +1,29 @@
+{
+  "project_info": {
+    "project_number": "24934497450",
+    "project_id": "dayrecord-e10aa",
+    "storage_bucket": "dayrecord-e10aa.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:24934497450:android:4f0936b2042c72ee06a4d3",
+        "android_client_info": {
+          "package_name": "com.example.day_record"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyAsx41UfALQPOXLtPsqBzBTEjUJcytKVlc"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
