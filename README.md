@@ -1,10 +1,10 @@
 # social app projects
 ### 1. General Board 
 <p>프로젝트 소개<br>
-: 게시글 포스팅 기반 소셜 app </p>
+: 커뮤니티 앱 </p>
 
 <p>사용 기술<br>
-: Android Studio, kotlin, sqlite, firebase
+: Android Studio, kotlin, sqlite
 </p>
 
 <p>주요 기능 <br> 
@@ -21,7 +21,7 @@
 : 영화 소식을 받아보고, 영화 리뷰 작성과 평점 매기기 등을 통한 유저 간의 소통과 토론을 가능케 하는 소셜 app </p>
 
 <p>사용 기술<br>
-: Flutter, Java, Firebase 외 공공API
+: Flutter, Java, Firebase
 </p>
 
 <p>주요 기능 <br> 
