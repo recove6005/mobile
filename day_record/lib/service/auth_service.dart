@@ -1,10 +1,12 @@
 import 'dart:math';
-import 'dart:developer' as dev;
 import 'package:firebase_auth/firebase_auth.dart';
+import 'package:logger/logger.dart';
 import 'package:mailer/mailer.dart';
 import 'package:mailer/smtp_server/gmail.dart';
 
 class AuthService {
+  static var logger = Logger();
+
   static final FirebaseAuth _auth = FirebaseAuth.instance;
   static String _authCode = '';
 
@@ -21,19 +23,19 @@ class AuthService {
           email: email,
           password: password,
         );
-          dev.log('User account is created.');
+          logger.d('day_record_log : User account is created.');
           return true;
       } on FirebaseAuthException catch (e) {
         if (e.code == 'weak-password') {
-          dev.log('The password provided is too weak.', name: 'day_record_log');
+          logger.e('day_record_log : The password provided is too weak.');
           return false;
         } else if (e.code == 'email-already-in-use') {
 
-          dev.log('The account already exists for that email.', name: 'day_record_log');
+          logger.e('day_record_log : The account already exists for that email.');
           return false;
         }
       } catch (e) {
-        dev.log('$e', name: 'day_record_log');
+          logger.e('day_record_log : error => $e');
           return false;
       }
   }
@@ -62,14 +64,13 @@ class AuthService {
 
     try {
       final sendReport = await send(message, smtpServer);
-      dev.log('Email sent: ${sendReport.toString()}');
+      logger.d('day_record_log : Email sent => ${sendReport.toString()}');
       return _authCode;
     } catch (e) {
-      dev.log('Failed to send verification email: $e', name: "day_record_log");
+      logger.d('day_record_log : Failed to send verification email => $e');
       return null;
     }
   }
-
 
   // login
   static Future<bool> signInwithEmail(String email, String password) async {
@@ -78,10 +79,10 @@ class AuthService {
           email: email,
           password: password
       );
-      dev.log('Logind', name: 'day_record_log');
+      logger.d('day_record_log : Logind');
       return true;
     } catch (e) {
-      dev.log('Login failed: $e', name: 'day_record_log');
+      logger.e('day_record_log: Login failed => $e');
       return false;
     }
   }

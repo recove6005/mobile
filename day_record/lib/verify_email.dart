@@ -6,6 +6,8 @@ import 'package:flutter/material.dart';
 import 'package:fluttertoast/fluttertoast.dart';
 import 'dart:developer' as dev;
 
+import 'package:logger/logger.dart';
+
 
 void main() {
   String nickname = '';
@@ -107,6 +109,8 @@ class VerifyHome extends StatefulWidget {
 }
 
 class _VerifyEmail extends State<VerifyHome> {
+  static var logger = Logger();
+
   late String nickname;
   late String email;
   late String password;
@@ -141,23 +145,25 @@ class _VerifyEmail extends State<VerifyHome> {
     // 이메일 코드 전송
     if(_authCode != null) {
       // 이메일 코드 전송 성공
-      dev.log('Verification code is sented: $email', name: 'day_record_log');
+      logger.d('day_record_log : Verification code is sented $email');
       _showToast('Verification code is sented.');
     } else {
       // 이메일 코드 전송 실패
-      dev.log('VFailed to send verification code: $email', name: 'day_record_log');
+      logger.d('day_record_log : Failed to send verification code $email');
       _showToast('Failed to send verification code.');
     }
   }
 
-  void _signUp() {
+  Future<void> _signUp() async {
     // 코드 인증 성공
     if(_codeController.text == _authCode) {
       // 계정 생성
-      bool actCreateCheck = AuthService.createUser(email, password) as bool;
+      logger.d('day_record_log : Inserting user account...');
+      bool actCreateCheck = await AuthService.createUser(email, password) as bool;
 
       // 유저 생성
-      bool userCreateCheck = UserRepository.insertUser(nickname, email) as bool;
+      logger.d('day_record_log : Inserting user model...');
+      bool userCreateCheck = await UserRepository.insertUser(nickname, email) as bool;
 
       if(actCreateCheck && userCreateCheck) {
         // 로그인

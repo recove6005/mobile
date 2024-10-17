@@ -81,7 +81,7 @@ class _MyHomePageState extends State<MyHomePage> {
                   title: Text('Logout'),
                   onTap: () async {
                     // logout logic
-                    await AuthService.signOut();
+                    AuthService.signOut();
                     Navigator.pushReplacement(
                       context,
                       MaterialPageRoute(builder: (context) => LoginPage())
