@@ -30,10 +30,13 @@ environment:
 dependencies:
   flutter:
     sdk: flutter
+  fluttertoast: ^8.0.9
   table_calendar: ^3.1.2
   firebase_core: ^2.10.0
   cupertino_icons: ^1.0.2
   firebase_auth: ^4.16.0
+  cloud_firestore: ^4.15.8
+  mailer: ^6.0.0
 
 dev_dependencies:
   flutter_test:
