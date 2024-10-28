@@ -18,7 +18,7 @@ class _SchedulePage extends State<SchedulePage> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: const Text('Schedule Title'),
+        title: const Text('일정'),
       ),
       body: Column(
         children: [

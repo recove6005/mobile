@@ -1,5 +1,5 @@
 import 'package:day_record/main.dart';
-import 'package:day_record/repository/user_repository.dart';
+import 'package:day_record/repository/user_info_collection.dart';
 import 'package:day_record/service/auth_service.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
